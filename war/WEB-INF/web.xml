@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+              http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5"
+         xmlns="http://java.sun.com/xml/ns/javaee">
+
+    <!-- Servlets -->
+    <servlet>
+        <servlet-name>StatusServlet</servlet-name>
+        <servlet-class>fr.jjj.conductormanagerui.server.status.StatusServiceImpl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DevicesServlet</servlet-name>
+        <servlet-class>fr.jjj.conductormanagerui.server.DevicesServiceImpl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeviceAudioOutServlet</servlet-name>
+        <servlet-class>fr.jjj.conductormanagerui.server.audioout.DeviceAudioOutServiceImpl</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>StatusServlet</servlet-name>
+        <url-pattern>/conductormanagerui/status</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DevicesServlet</servlet-name>
+        <url-pattern>/conductormanagerui/devices</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeviceAudioOutServlet</servlet-name>
+        <url-pattern>/conductormanagerui/audioout</url-pattern>
+    </servlet-mapping>
+
+    <!-- Default page to serve -->
+    <welcome-file-list>
+        <welcome-file>ConductorManagerUI.html</welcome-file>
+    </welcome-file-list>
+
+</web-app>
