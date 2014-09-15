@@ -28,4 +28,6 @@ public interface DeviceAudioOutServiceAsync {
     void selectNavItem(String item,AsyncCallback<List<String>> callback) throws IllegalArgumentException;
 
     void addToQueue(String item,AsyncCallback<Void> callback) throws IllegalArgumentException;
+
+    void play(String item,AsyncCallback<Void> callback) throws IllegalArgumentException;
 }

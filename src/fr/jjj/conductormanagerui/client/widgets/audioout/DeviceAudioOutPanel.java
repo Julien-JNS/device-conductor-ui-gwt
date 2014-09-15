@@ -22,7 +22,7 @@ public class DeviceAudioOutPanel extends HorizontalPanel implements MediaSourceP
 
     public DeviceAudioOutPanel() {
 
-        queuePanel = new QueuePanel();
+        queuePanel = new QueuePanel(deviceAudioOutService);
 
         add(queuePanel);
 
@@ -44,8 +44,6 @@ public class DeviceAudioOutPanel extends HorizontalPanel implements MediaSourceP
                 updateQueue();
             }
         });
-
-
     }
 
     @Override

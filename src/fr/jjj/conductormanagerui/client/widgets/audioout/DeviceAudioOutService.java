@@ -30,4 +30,5 @@ public interface DeviceAudioOutService extends RemoteService {
 
     void addToQueue(String item) throws IllegalArgumentException;
 
+    void play(String item) throws IllegalArgumentException;
 }

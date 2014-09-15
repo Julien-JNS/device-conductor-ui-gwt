@@ -72,7 +72,7 @@ public class DeviceAudioOutServiceImpl extends RemoteServiceServlet implements D
     @Override
     public List<String> getNavItems(String ref) throws IllegalArgumentException {
         log.info("Requesting nav items for ref " + ref);
-        return navigationItems  ;
+        return navigationItems;
     }
 
     @Override
@@ -96,4 +96,12 @@ public class DeviceAudioOutServiceImpl extends RemoteServiceServlet implements D
     public void setQueue(List<String> strings) {
 
     }
+
+    public void play(String item)
+    {
+        log.info("Play "+item);
+        presenter.play(item);
+    }
+
+
 }

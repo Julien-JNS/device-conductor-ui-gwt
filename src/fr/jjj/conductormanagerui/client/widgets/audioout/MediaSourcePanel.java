@@ -43,7 +43,7 @@ public class MediaSourcePanel extends VerticalPanel {
             @Override
             public void onChange(ChangeEvent event) {
                 int selectedIndex = source.getSelectedIndex();
-                Window.alert("index " + selectedIndex + "selected:" + source.getItemText(selectedIndex));
+
                 if (selectedIndex > 0)
                     service.setMediaSource(source.getItemText(selectedIndex), new AsyncCallback<Void>() {
                         @Override
