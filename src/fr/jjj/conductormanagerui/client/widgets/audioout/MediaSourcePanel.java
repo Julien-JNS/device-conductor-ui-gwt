@@ -1,9 +1,7 @@
 package fr.jjj.conductormanagerui.client.widgets.audioout;
 
-import com.google.gwt.event.dom.client.ChangeEvent;
-import com.google.gwt.event.dom.client.ChangeHandler;
-import com.google.gwt.event.dom.client.ClickEvent;
-import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.dom.client.Document;
+import com.google.gwt.event.dom.client.*;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.*;
@@ -44,7 +42,7 @@ public class MediaSourcePanel extends VerticalPanel {
             public void onChange(ChangeEvent event) {
                 int selectedIndex = source.getSelectedIndex();
 
-                if (selectedIndex > 0)
+                if (selectedIndex >= 0)
                     service.setMediaSource(source.getItemText(selectedIndex), new AsyncCallback<Void>() {
                         @Override
                         public void onFailure(Throwable caught) {
@@ -94,7 +92,7 @@ public class MediaSourcePanel extends VerticalPanel {
         back.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(ClickEvent event) {
-                selectNavItem("..");
+                moveBackToParent();
             }
         });
 
@@ -120,6 +118,7 @@ public class MediaSourcePanel extends VerticalPanel {
                 while (it.hasNext()) {
                     source.addItem(it.next());
                 }
+                DomEvent.fireNativeEvent(Document.get().createChangeEvent(), source);
             }
         });
     }
@@ -152,6 +151,20 @@ public class MediaSourcePanel extends VerticalPanel {
 
             @Override
             public void onSuccess(List<String> result) {
+                updateNavItem();
+            }
+        });
+    }
+
+    private void moveBackToParent() {
+        service.moveBackToParent(new AsyncCallback<Void>() {
+            @Override
+            public void onFailure(Throwable caught) {
+
+            }
+
+            @Override
+            public void onSuccess(Void result) {
                 updateNavItem();
             }
         });

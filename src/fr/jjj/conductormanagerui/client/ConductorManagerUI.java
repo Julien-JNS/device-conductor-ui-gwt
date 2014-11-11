@@ -7,9 +7,11 @@ import com.google.gwt.cell.client.TextCell;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.cellview.client.CellList;
+import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.view.client.SelectionChangeEvent;
 import com.google.gwt.view.client.SingleSelectionModel;
@@ -39,6 +41,20 @@ public class ConductorManagerUI implements EntryPoint {
      */
     public void onModuleLoad() {
 
+        // Menu
+        Command cmd = new Command() {
+            public void execute() {
+                Window.alert("You selected a menu item!");
+            }
+        };
+
+        // Make some sub-menus that we will cascade from the top menu.
+        MenuBar menu = new MenuBar();
+        menu.addItem("Statut global", cmd);
+        menu.addItem("Périphériques", cmd);
+        menu.addItem("Diffuser...", cmd);
+
+        RootPanel.get("menu").add(menu);
         // Status
         final StatusPanel statusPanel = new StatusPanel();
         RootPanel.get("status").add(statusPanel);

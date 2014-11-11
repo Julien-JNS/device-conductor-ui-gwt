@@ -1,6 +1,7 @@
 package fr.jjj.conductormanagerui.client.widgets.audioout;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import fr.jjj.conductormanagerui.shared.DeviceDesc;
@@ -11,9 +12,11 @@ import java.util.List;
 /**
  * Created by Jaunais on 10/08/2014.
  */
-public class DeviceAudioOutPanel extends HorizontalPanel implements MediaSourcePanelListener {
+public class DeviceAudioOutPanel extends HorizontalPanel implements MediaSourcePanelListener,CommandListener {
 
     private QueuePanel queuePanel;
+
+    private CommandPanel commandPanel;
 
     private MediaSourcePanel mediaSourcePanel;
 
@@ -25,6 +28,10 @@ public class DeviceAudioOutPanel extends HorizontalPanel implements MediaSourceP
         queuePanel = new QueuePanel(deviceAudioOutService);
 
         add(queuePanel);
+
+        commandPanel = new CommandPanel(this);
+
+        add(commandPanel);
 
         mediaSourcePanel = new MediaSourcePanel(deviceAudioOutService, this);
 
@@ -66,5 +73,40 @@ public class DeviceAudioOutPanel extends HorizontalPanel implements MediaSourceP
                 queuePanel.update(result);
             }
         });
+    }
+
+    @Override
+    public void command(DeviceDesc.Command command) {
+        switch(command)
+        {
+            case PLAY:
+                String item=queuePanel.getSelectedItem();
+                deviceAudioOutService.play(item, new AsyncCallback<Void>() {
+                    @Override
+                    public void onFailure(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                });
+                break;
+            default:
+                deviceAudioOutService.command(command, new AsyncCallback<Void>() {
+                    @Override
+                    public void onFailure(Throwable throwable) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                });
+
+                break;
+        }
     }
 }

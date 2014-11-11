@@ -1,6 +1,7 @@
 package fr.jjj.conductormanagerui.server.audioout;
 
 import com.google.gwt.user.server.rpc.RemoteServiceServlet;
+import fr.jjj.conductor.model.Device;
 import fr.jjj.conductor.model.MediaItemDesc;
 import fr.jjj.conductormanager.ui.DeviceAudioOutPresenter;
 import fr.jjj.conductormanager.ui.DeviceAudioOutView;
@@ -87,6 +88,12 @@ public class DeviceAudioOutServiceImpl extends RemoteServiceServlet implements D
     }
 
     @Override
+    public void moveBackToParent() throws IllegalArgumentException {
+        log.info("Move back to parent... ");
+        presenter.moveBackToParent();
+    }
+
+    @Override
     public void addToQueue(String item) throws IllegalArgumentException {
         presenter.addToQueue(item);
 
@@ -103,5 +110,38 @@ public class DeviceAudioOutServiceImpl extends RemoteServiceServlet implements D
         presenter.play(item);
     }
 
+    @Override
+    public void command(DeviceDesc.Command command) throws IllegalArgumentException {
+        log.info("Command "+command);
+        DeviceAudioOutPresenter.Command presenterCommand=convertToPresenter(command);
+        presenter.command(presenterCommand);
+    }
+
+    private DeviceAudioOutPresenter.Command convertToPresenter(DeviceDesc.Command command)
+    {
+        DeviceAudioOutPresenter.Command PresenterCommand=null;
+        switch(command)
+        {
+            case VOLUP:
+                PresenterCommand=DeviceAudioOutPresenter.Command.VOLUP;
+            break;
+            case VOLDOWN:
+                PresenterCommand=DeviceAudioOutPresenter.Command.VOLDOWN;
+            break;
+            case PAUSE:
+                PresenterCommand=DeviceAudioOutPresenter.Command.PAUSE;
+            break;
+            case NEXT:
+                PresenterCommand=DeviceAudioOutPresenter.Command.NEXT;
+            break;
+            case PREV:
+                PresenterCommand=DeviceAudioOutPresenter.Command.PREV;
+            break;
+            case STOP:
+                PresenterCommand=DeviceAudioOutPresenter.Command.STOP;
+            break;
+        }
+        return PresenterCommand;
+    }
 
 }

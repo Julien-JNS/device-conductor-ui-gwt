@@ -23,9 +23,11 @@
         <copy todir="war/WEB-INF/lib" file="${gwt.sdk}/gwt-servlet.jar"/>
         <copy todir="war/WEB-INF/lib" file="${gwt.sdk}/gwt-servlet-deps.jar"/>
         <!-- Add any additional server libs that need to be copied -->
-        <copy todir="war/WEB-INF/lib" file="C:\Users\Jaunais\git\device-conductor\dist\lib\device-conductor-rmi.jar"
+        <copy todir="war/WEB-INF/lib" file="C:\Users\Jaunais\git\device-conductor\conductor\target\conductor-0.0.0-rmi.jar"
               overwrite="true"/>
-        <copy todir="war/WEB-INF/lib" file="C:\Users\Jaunais\git\device-conductor\dist\lib\device-conductor-manager.jar"
+        <copy todir="war/WEB-INF/lib" file="C:\Users\Jaunais\git\device-conductor\conductor\target\conductor-0.0.0-shared.jar"
+              overwrite="true"/>
+        <copy todir="war/WEB-INF/lib" file="C:\Users\Jaunais\git\device-conductor\conductor-manager\target\conductor-manager-0.0.0.jar"
               overwrite="true"/>
         <copy todir="war/WEB-INF/lib" file="C:\Users\Jaunais\git\device-conductor\export\commons-logging-1.2.jar"
               overwrite="true"/>
@@ -183,7 +185,7 @@
     </artifact:dependencies>
 
     <path id="build.classpath">
-        <fileset refid="extjars.fileset"/>
+        <fileset refid="httpserver.extjars.fileset"/>
         <fileset dir="C:\Users\Jaunais\git\device-conductor\dist\lib">
             <include name="**/*.jar"/>
         </fileset>

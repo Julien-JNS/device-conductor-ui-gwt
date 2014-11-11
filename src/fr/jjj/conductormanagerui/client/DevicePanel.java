@@ -30,6 +30,9 @@ public class DevicePanel extends VerticalPanel {
 
     public DevicePanel()
     {
+        super();
+        super.setBorderWidth(5);
+
         devices=new ArrayList<DeviceDesc>();
 
         // Create a CellTable.

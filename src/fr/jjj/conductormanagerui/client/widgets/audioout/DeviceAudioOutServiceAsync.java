@@ -27,7 +27,12 @@ public interface DeviceAudioOutServiceAsync {
 
     void selectNavItem(String item,AsyncCallback<List<String>> callback) throws IllegalArgumentException;
 
+    void moveBackToParent(AsyncCallback<Void> callback) throws IllegalArgumentException;
+
     void addToQueue(String item,AsyncCallback<Void> callback) throws IllegalArgumentException;
 
     void play(String item,AsyncCallback<Void> callback) throws IllegalArgumentException;
+
+    void command(DeviceDesc.Command command,AsyncCallback<Void> callback);
+
 }

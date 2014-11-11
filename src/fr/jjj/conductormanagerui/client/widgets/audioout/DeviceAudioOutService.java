@@ -28,7 +28,11 @@ public interface DeviceAudioOutService extends RemoteService {
 
     void selectNavItem(String item) throws IllegalArgumentException;
 
+    void moveBackToParent() throws IllegalArgumentException;
+
     void addToQueue(String item) throws IllegalArgumentException;
 
     void play(String item) throws IllegalArgumentException;
+
+    void command(DeviceDesc.Command command) throws IllegalArgumentException;
 }
